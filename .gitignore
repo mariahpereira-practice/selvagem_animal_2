@@ -42,5 +42,4 @@ next-env.d.ts
 
 #netlify
 netlify.toml
-__forms.html
 .env.local

@@ -25,7 +25,7 @@ export default function LoginPage() {
         });
 
         if (res.ok) {
-            router.refresh(); //Atualiza rotas do servidor
+            router.refresh();
             router.push('/');
         } else {
             const data = await res.json();

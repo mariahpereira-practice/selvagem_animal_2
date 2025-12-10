@@ -53,14 +53,21 @@ export default function FichaDeAdocaoForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    
+    // Envia para o Netlify Forms
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({ "form-name": "form-react", ...inputs })
-    }).then(() => {
+    })
+    .then(() => {
       alert("Em breve daremos uma resposta de seu contato! Obrigado(a)!");
       setInputs({ nome: "", email: "", animal: animal?.nome || "", mensagem: "" });
-    }).catch(error => alert(error));
+    })
+    .catch(error => {
+      console.error('Form submission error:', error);
+      alert("Erro ao enviar formulário. Tente novamente.");
+    });
   };
 
   const handleReset = (event) => {
