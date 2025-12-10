@@ -87,9 +87,10 @@ export default function FichaDeAdocaoForm() {
           >
             <input type="hidden" name="form-name" value="form-react" />
             <input type="hidden" name="bot-field" />
+            <input type="hidden" name="animal" value={inputs.animal} />
             <br />
             <label className="label">
-              <span className="span-nome" name="animal">
+              <span className="span-nome">
                 Animal: {inputs.animal}
               </span>
             </label>
