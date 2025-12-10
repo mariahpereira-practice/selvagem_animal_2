@@ -1,0 +1,30 @@
+.header {
+    grid-area: header;
+    background-color: #D2691E;
+    padding: 10px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.topnav{
+    overflow: hidden;
+    background-color: #D2691E;
+}
+
+.topnav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    background-color: #FFF8DC;
+    color: #4B3621;
+    border-radius: 20px;
+}
