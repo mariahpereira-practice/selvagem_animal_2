@@ -1,0 +1,38 @@
+.animal-card {
+    border-radius: 8px;
+    padding: 16px;
+    background-color: #e9e1c7;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-direction: column;
+    justify-content: space-between;
+    display: flex;
+    height: 95%;
+}
+
+.animal-card img {
+    width: 100%;
+    height: auto;
+    max-height: 650px;
+    border-radius: 20px;
+}
+
+.animal-card nav {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.animal-card h3 {
+    margin: 0;
+    color: #4B3621;
+}
+
+.nome-animal {
+    align-items: center;
+    display: flex;
+    color: #4B3621;
+    gap: 3px;
+    margin-bottom: 13px;
+}
