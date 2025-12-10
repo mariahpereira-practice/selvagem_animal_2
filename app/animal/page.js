@@ -8,7 +8,6 @@ export const metadata = {
   description: 'Veja todos os animais disponíveis para adoção virtual',
 };
 
-// Função para ler os arquivos MDX
 function getAnimalsData() {
   const animalsDirectory = path.join(process.cwd(), 'animal');
   const filenames = fs.readdirSync(animalsDirectory);

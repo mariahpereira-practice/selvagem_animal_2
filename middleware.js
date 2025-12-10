@@ -2,20 +2,34 @@ import { NextResponse } from "next/server";
 
 export function middleware(request) {
     const session = request.cookies.get("session");
+    const { pathname } = request.nextUrl;
 
-    //Protege todas as rotas que começam com /dashboard
-    if(!session && request.nextUrl.pathname.startsWith("/dashboard")) {
-            return NextResponse.redirect(new URL("/login", request.url));
+    if (
+        pathname.startsWith('/_next') ||
+        pathname.startsWith('/api') ||
+        pathname.includes('.')
+    ) {
+        return NextResponse.next();
     }
+    const publicRoutes = [
+        "/",          
+        "/login", 
+        "/about"
+    ];
 
-    //Impede que usuários logados acessem a página de login
-    if(session && request.nextUrl.pathname === "/login") {
-            return NextResponse.redirect(new URL("/", request.url));
+    const isPublicRoute = publicRoutes.includes(pathname);
+    if (!session && !isPublicRoute) {
+        return NextResponse.redirect(new URL("/login", request.url));
+    }
+    if (session && pathname === "/login") {
+        return NextResponse.redirect(new URL("/", request.url));
     }
 
     return NextResponse.next();
 }
 
 export const config = {
-    matcher: ["//:path*", "/login"],
+    matcher: [
+        '/((?!api|_next/static|_next/image|favicon.ico).*)',
+    ],
 }

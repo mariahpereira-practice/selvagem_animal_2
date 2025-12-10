@@ -28,3 +28,47 @@
     color: #4B3621;
     border-radius: 20px;
 }
+
+.authContainer {
+    float: right;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 30px;
+}
+
+.userEmail {
+    color: white;
+    font-size: 14px;
+}
+
+.logoutButton {
+    background-color: #8B4513;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.logoutButton:hover {
+    background-color: #A0522D;
+}
+
+.loginButton {
+    float: right;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    background-color: #8B4513;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.loginButton:hover {
+    background-color: #A0522D;
+}

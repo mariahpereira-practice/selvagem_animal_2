@@ -8,7 +8,7 @@ export default function LoginPage() {
     const [error, setError] = useState('');
 
     async function handleSubmit(e) {
-        e.preventDefault(); //cancela o processo de submit do HTML
+        e.preventDefault();
         setLoading(true);
         setError('');
 
@@ -25,11 +25,11 @@ export default function LoginPage() {
         });
 
         if (res.ok) {
-            router.refresh();
             router.push('/');
+            router.refresh();
         } else {
             const data = await res.json();
-            setError(data.error);
+            setError(data.error || 'Erro ao fazer login');
             setLoading(false);
         }
     }
