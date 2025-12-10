@@ -14,6 +14,7 @@ export default function FichaDeAdocaoForm() {
     animal: "",
     mensagem: ""
   });
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     const nome = searchParams.get('nome');
@@ -51,8 +52,40 @@ export default function FichaDeAdocaoForm() {
       .join('&');
   };
 
+  const validateForm = () => {
+    const newErrors = {};
+
+    if (!inputs.nome || inputs.nome.trim().length === 0) {
+      newErrors.nome = 'Nome completo é obrigatório';
+    } else if (inputs.nome.trim().length < 3) {
+      newErrors.nome = 'Nome deve ter no mínimo 3 caracteres';
+    }
+
+    if (!inputs.email) {
+      newErrors.email = 'E-mail é obrigatório';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inputs.email)) {
+      newErrors.email = 'E-mail inválido';
+    }
+
+    if (!inputs.mensagem || inputs.mensagem.trim().length === 0) {
+      newErrors.mensagem = 'Por favor, explique por que deseja adotar este animal';
+    } else if (inputs.mensagem.trim().length < 10) {
+      newErrors.mensagem = 'Mensagem deve ter no mínimo 10 caracteres';
+    }
+
+    return newErrors;
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
+    setErrors({});
+
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      alert("Por favor, corrija os erros no formulário.");
+      return;
+    }
     
     // Envia para o Netlify Forms
     fetch("/", {
@@ -63,6 +96,7 @@ export default function FichaDeAdocaoForm() {
     .then(() => {
       alert("Em breve daremos uma resposta de seu contato! Obrigado(a)!");
       setInputs({ nome: "", email: "", animal: animal?.nome || "", mensagem: "" });
+      setErrors({});
     })
     .catch(error => {
       console.error('Form submission error:', error);
@@ -103,33 +137,39 @@ export default function FichaDeAdocaoForm() {
             </label>
             <br />
             <label className="label">
-              <span>Nome Completo do Adotante:</span>
+              <span>Nome Completo do Adotante: *</span>
               <input
                 type="text"
                 name="nome"
                 value={inputs.nome}
                 onChange={handleChange}
+                className={errors.nome ? 'error-input' : ''}
               />
+              {errors.nome && <span className="error-message">{errors.nome}</span>}
             </label>
             <label className="label">
-              <span>E-mail de contato:</span>
+              <span>E-mail de contato: *</span>
               <input
-                type="text"
+                type="email"
                 name="email"
                 value={inputs.email}
                 onChange={handleChange}
+                className={errors.email ? 'error-input' : ''}
               />
+              {errors.email && <span className="error-message">{errors.email}</span>}
             </label>
             <br />
             <label className="label">
-              Por que você deseja adotar este animal?
+              Por que você deseja adotar este animal? *
             </label>
             <textarea
               name="mensagem"
               rows={5}
               value={inputs.mensagem}
               onChange={handleChange}
+              className={errors.mensagem ? 'error-input' : ''}
             />
+            {errors.mensagem && <span className="error-message">{errors.mensagem}</span>}
             <br />
             <br />
             <br />
