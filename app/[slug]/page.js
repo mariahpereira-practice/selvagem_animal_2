@@ -1,9 +1,8 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import matter from 'gray-matter';
 import Link from "next/link";
 
-// Gera as rotas estáticas para cada animal
 export async function generateStaticParams() {
   const animalsDirectory = path.join(process.cwd(), 'animal');
   const filenames = fs.readdirSync(animalsDirectory);
@@ -21,9 +20,8 @@ export async function generateStaticParams() {
     });
 }
 
-// Gera metadata para cada página
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   const animalsDirectory = path.join(process.cwd(), 'animal');
   const filenames = fs.readdirSync(animalsDirectory);
   
@@ -48,8 +46,8 @@ export async function generateMetadata({ params }) {
   };
 }
 
-export default function AnimalPost({ params }) {
-  const { slug } = params;
+export default async function AnimalPost({ params }) {
+  const { slug } = await params;
   const animalsDirectory = path.join(process.cwd(), 'animal');
   const filenames = fs.readdirSync(animalsDirectory);
   
