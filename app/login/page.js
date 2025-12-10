@@ -1,6 +1,9 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/lib/firebase";
+import "./login.css"; 
 
 export default function LoginPage() {
     const router = useRouter();
@@ -43,53 +46,66 @@ export default function LoginPage() {
             return;
         }
 
-        const res = await fetch('/api/login', {
-            method: 'POST',
-            body: JSON.stringify({ email, password }),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        try {
+            // 1. Fazer login no Firebase Client SDK (navegador)
+            await signInWithEmailAndPassword(auth, email, password);
 
-        if (res.ok) {
-            router.push('/');
-            router.refresh();
-        } else {
-            const data = await res.json();
-            setError(data.error || 'Erro ao fazer login');
+            // 2. Fazer login no backend para criar cookie de sessão
+            const res = await fetch('/api/login', {
+                method: 'POST',
+                body: JSON.stringify({ email, password }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (res.ok) {
+                router.push('/');
+                router.refresh();
+            } else {
+                const data = await res.json();
+                setError(data.error || 'Erro ao fazer login');
+                setLoading(false);
+            }
+        } catch (err) {
+            console.error('Erro no login:', err);
+            setError(err.message || 'Erro ao fazer login');
             setLoading(false);
         }
     }
 
     return (
-        <div className="flex h-screen items-center justify-center bg-gray-100">
-            <form onSubmit={handleSubmit} className="w-full max-w-sm bg-white p-6 rounded shadow">
-                <h1 className="text-2xl font-bold mb-4">Login</h1>
-                {error && <p className="mb-4 text-red-500 text-sm">{error}</p>}
-
-                <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold">E-mail</label>
+        <div>
+            <form onSubmit={handleSubmit} className="login-form">
+                <h1>Login</h1>
+                {error && <p className="login-error">{error}</p>}
+                
+                <div className="form-group">
+                    <label>E-mail</label>
                     <input 
                         type="email" 
-                        name="email" 
-                        className={`w-full p-2 border rounded ${errors.email ? 'border-red-500' : ''}`}
+                        name="email"
+                        className={errors.email ? 'error' : ''}
+                        placeholder="seu@email.com"
                     />
-                    {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+                    {errors.email && <span className="field-error">{errors.email}</span>}
                 </div>
 
-                <div className="mb-6">
-                    <label className="block mb-2 text-sm font-bold">Senha</label>
+                <div className="form-group">
+                    <label>Senha</label>
                     <input 
                         type="password" 
-                        name="password" 
-                        className={`w-full p-2 border rounded ${errors.password ? 'border-red-500' : ''}`}
+                        name="password"
+                        className={errors.password ? 'error' : ''}
+                        placeholder="••••••••"
                     />
-                    {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
+                    {errors.password && <span className="field-error">{errors.password}</span>}
                 </div>
 
                 <button 
-                    disabled={loading} 
-                    className={`w-full text-white p-2 rounded font-bold ${loading ? 'bg-gray-400' : 'bg-blue-600 hover:bg-blue-700'}`}
+                    type="submit"
+                    disabled={loading}
+                    className="login-button"
                 >
                     {loading ? 'Entrando...' : 'Entrar'}
                 </button>
