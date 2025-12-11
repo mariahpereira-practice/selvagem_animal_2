@@ -1,38 +1,57 @@
 .animal-card {
-    border-radius: 8px;
-    padding: 16px;
-    background-color: #e9e1c7;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 20px;
+    background: white;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
     flex-direction: column;
     justify-content: space-between;
     display: flex;
-    height: 95%;
+    height: 100%;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(210, 105, 30, 0.1);
+}
+
+.animal-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(210, 105, 30, 0.25);
 }
 
 .animal-card img {
     width: 100%;
     height: auto;
     max-height: 650px;
-    border-radius: 20px;
+    border-radius: 12px;
+    transition: transform 0.3s ease;
+    object-fit: cover;
+}
+
+.animal-card:hover img {
+    transform: scale(1.03);
 }
 
 .animal-card nav {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
     margin-top: auto;
-    padding-top: 10px;
+    padding-top: 16px;
 }
 
 .animal-card h3 {
     margin: 0;
     color: #4B3621;
+    font-size: 1.5rem;
+    font-weight: bold;
 }
 
 .nome-animal {
     align-items: center;
     display: flex;
     color: #4B3621;
-    gap: 3px;
-    margin-bottom: 13px;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding: 12px;
+    background: linear-gradient(135deg, #FFF8DC 0%, #F5DEB3 100%);
+    border-radius: 8px;
+    border-left: 4px solid #D2691E;
 }

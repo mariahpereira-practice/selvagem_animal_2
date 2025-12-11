@@ -13,7 +13,7 @@ export default function RootLayout({children}) {
         <html lang="pt-BR">
             <body>
                 <main className="layout">
-                    <Header title="Estudos de NextJS"></Header>
+                    <Header title="Selvagem Animal - Estudo de NextJs"></Header>
                     <div className="main">
                         {children}
                     </div>

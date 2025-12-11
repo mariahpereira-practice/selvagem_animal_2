@@ -1,17 +1,19 @@
 .header {
     grid-area: header;
-    background-color: #D2691E;
-    padding: 10px;
+    background: linear-gradient(135deg, #D2691E 0%, #C25917 100%);
+    padding: 12px 20px;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .topnav{
     overflow: hidden;
-    background-color: #D2691E;
+    background-color: transparent;
+    justify-content: space-between;
 }
 
 .topnav a {
@@ -19,42 +21,59 @@
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 14px 20px;
     text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    border-radius: 8px;
 }
 
 .topnav a:hover {
-    background-color: #FFF8DC;
+    background-color: rgba(255, 248, 220, 0.95);
     color: #4B3621;
-    border-radius: 20px;
+    transform: translateY(-2px);
 }
 
 .authContainer {
     float: right;
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-right: 30px;
+    gap: 16px;
+    margin-right: 40px;
 }
 
 .userEmail {
     color: white;
     font-size: 14px;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 8px 16px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
 }
 
 .logoutButton {
-    background-color: #8B4513;
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: 20px;
     cursor: pointer;
     font-size: 14px;
-    transition: background-color 0.3s;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .logoutButton:hover {
-    background-color: #A0522D;
+    background: linear-gradient(135deg, #A0522D 0%, #B8651E 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.logoutButton:active {
+    transform: translateY(0);
 }
 
 .loginButton {
@@ -62,25 +81,36 @@
     display: block;
     color: white;
     text-align: center;
-    padding: 14px 16px;
+    padding: 10px 24px;
     text-decoration: none;
-    background-color: #8B4513;
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%);
     border-radius: 20px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .loginButton:hover {
-    background-color: #A0522D;
+    background: linear-gradient(135deg, #A0522D 0%, #B8651E 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.loginButton:active {
+    transform: translateY(0);
 }
 
 .perfilLink {
     color: white;
     text-decoration: none;
-    padding: 8px 16px;
+    padding: 10px 20px;
     border-radius: 20px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .perfilLink:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }

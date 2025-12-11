@@ -1,14 +1,18 @@
 .footer {
     grid-area: footer;
-    background-color: #D2691E;
-    padding: 10px;
+    background: linear-gradient(135deg, #D2691E 0%, #C25917 100%);
+    padding: 16px 20px;
     color: white;
     justify-content: center;
     display: flex;
+    align-items: center;
     width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
     z-index: 1000;
     margin: 0;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.15);
+    font-size: 14px;
+    font-weight: 500;
 }

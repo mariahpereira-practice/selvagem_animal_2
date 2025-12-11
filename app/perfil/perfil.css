@@ -21,12 +21,13 @@
 /* Card do perfil */
 .perfil-card {
     background: white;
-    padding: 40px;
-    border-radius: 12px;
+    padding: 48px;
+    border-radius: 16px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 600px;
+    max-width: 650px;
     animation: fadeIn 0.4s ease-out;
+    border: 1px solid rgba(210, 105, 30, 0.1);
 }
 
 @keyframes fadeIn {
@@ -42,16 +43,20 @@
 
 /* Título */
 .perfil-card h1 {
-    font-size: 28px;
+    font-size: 32px;
     font-weight: bold;
     color: #4B3621;
     margin-bottom: 8px;
+    text-align: center;
 }
 
 .perfil-subtitle {
     color: #666;
-    font-size: 14px;
-    margin-bottom: 30px;
+    font-size: 15px;
+    margin-bottom: 32px;
+    text-align: center;
+    padding-bottom: 24px;
+    border-bottom: 2px solid #F5DEB3;
 }
 
 /* Mensagens de sucesso/erro */
@@ -91,6 +96,7 @@
     display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 80% !important;
 }
 
 /* Grupos de formulário */
